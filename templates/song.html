@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form action="{{ url_for('song_info') }}" method="post">
+    <p>실시간 음원 순위</p>
+        <select name="music_chart">
+                    {% for i in range(0, 10) %}
+                        <option value={{ i + 1}}>{{ i + 1 }}위</option>
+                    {% endfor %}
+{#                    <option value=11>전체보기</option>#}
+        </select>
+        <input type="submit" value="전송">
+    </form>
+    <div class="song_information">
+        {% if song and artist %}
+            <p> 순위 : {{ song['currentRank'] }}</p>
+            <p> 제목 : {{ song['songName'] }} </p>
+            <p> 앨범 : {{ song['albumName'] }} </p>
+            <p>아티스트 : {{ artist['artistName'] }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

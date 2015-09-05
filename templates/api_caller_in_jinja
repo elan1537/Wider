@@ -1,0 +1,38 @@
+{% set melon_obj = api %}
+{% for key in melon_obj.keys() %}
+        {% if key != "songs" %}
+            <p>Search info ==> {{ key }} :: {{ melon_obj[key] }}</p>
+        {% endif %}
+{% endfor %}
+
+{% for key in melon_obj.keys() %}
+    {% if key == "songs" %}
+        {% set  songs = melon_obj["songs"]%}
+        {% set song_list = songs['song'] %}
+        {% for song_dict_len in range(0, 10) %}
+            {% set song_dict = song_list[song_dict_len] %}
+
+            <h1>====================================</h1>
+            {% for song_dict_key in song_dict.keys() %}
+                {% if song_dict_key != "artists" %}
+                    <p>Song info ==> {{ song_dict_key }} :: {{ song_dict[song_dict_key] }}</p>
+                {% endif %}
+            {% endfor %}
+            {% for song_dict_key in song_dict.keys() %}
+                {% if song_dict_key == 'artists' %}
+                    {% set artist = song_dict['artists'] %}
+                    {% set artist_list = artist['artist'] %}
+                    {% set artist_dict = artist_list[0] %}
+
+                    <h1>====================================</h1>
+                    {% for artist_key in artist_dict.keys() %}
+                        <p>{{ artist_key }} :: {{ artist_dict[artist_key] }}</p>
+                    {% endfor %}
+                    <h1>====================================</h1>
+                {% endif %}
+            {% endfor %}
+
+        <h1>====================================</h1>
+        {% endfor %}
+    {% endif %}
+{% endfor %}

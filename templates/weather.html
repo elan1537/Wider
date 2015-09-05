@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="today_weather">
+        <h2>오늘의 날씨</h2>
+
+        위치 : {{ location['city'] }} {{ location['county'] }} {{ location['village'] }} <br>
+        어제 : <br>
+        최대온도 : {{ yesterday['temperature']['tmax'] }} 최저온도 : {{ yesterday['temperature']['tmin'] }}<br>
+        날씨 : {{ yesterday['sky']['name'] }}
+        오늘 : {{ today}} <br>
+        내일 : <br>
+        최대온도 : {{ tomorrow['temperature']['tmax'] }} 최저온도 : {{ tomorrow['temperature']['tmin'] }} <br>
+        내일 모레 : {{ day_after }} <br>
+
+        <p id = "lon" name="lon"></p>
+        <p id = "lat" name="lat"></p>
+        <p id = "error"></p>
+
+        <script>
+        var lon_tag = document.getElementById('lon');
+        var lat_tag = document.getElementById('lat');
+        var error = document.getElementById('error')
+
+        (function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                error.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }());
+
+        function showPosition(position) {
+           lon_tag.innerHTML="longitude : " + position.coords.longitude;
+            lat_tag.innerHTML="latitude : " + position.coords.latitude;
+        }
+        </script>
+    </div>
+{% endblock %}

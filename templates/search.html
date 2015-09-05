@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+        <form action="{{ url_for('search') }}" method="post" onclick="halt()">
+            <select name = "api_set" id="api_set" onclick="myFunction()">
+                <optgroup label="search">
+                        <option value="album_search">앨범검색</option>
+                        <option value="artist_search">아티스트검색</option>
+                        <option value="music_search">곡검색</option>
+                </optgroup>
+            </select>
+             <p id = "demo"></p>
+            <input type="submit">
+        </form>
+    <script>
+        function halt() {
+            alert("Error");
+            return 0;
+        }
+        function input_creator(value) {
+                    var input = document.createElement('input');
+                    input.setAttribute("name", value);
+                    document.getElementById('demo').appendChild(input);
+        }
+
+        function myFunction() {
+            var x = document.getElementById("api_set").value;
+            if (x == "album_search") {
+                document.getElementById('demo').innerHTML="앨범 검색 ";
+                input_creator(x);
+            }
+            else if (x == "artist_search") {
+                document.getElementById('demo').innerHTML="아티스트 검색 ";
+                input_creator(x);
+            }
+            else {
+                document.getElementById('demo').innerHTML="곡검색 ";
+                input_creator(x);
+            }
+        }
+    </script>
+    <div class = "inform">
+        <p>{{ inform }}</p>
+    </div>
+{% endblock %}

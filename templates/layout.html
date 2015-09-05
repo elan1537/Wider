@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+{#    <script src="https://fb.me/react-0.13.3.js"></script>#}
+    <title>WIDER :: TEST</title>
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('main') }}"><h1 class = "logo">Wider</h1></a>
+        <div class="navigator">
+                <strong>
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="{{ url_for('hello_world') }}">Home</a></li>
+                            <li><a href="{{ url_for('song_info') }}">Song</a></li>
+                            <li><a href="{{ url_for('search') }}">Search</a></li>
+                            <li><a href="{{ url_for('weather') }}">Weather</a></li>
+                        </ul>
+                    </nav>
+                </strong>
+        </div>
+    </header>
+    <div class="block"></div>
+    <div class="body">
+        <div class="right-top"></div>
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+    </div>
+    <script>
+    </script>
+</body>
+</html>
